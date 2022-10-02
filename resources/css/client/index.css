@@ -1,0 +1,449 @@
+.client-page {
+    min-height: 100vh;
+
+    background-image: url('../../images/client/background.jpg');
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-attachment: fixed;
+    counter-reset: num;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 62.5%;
+}
+
+.page-nav {
+    position: sticky;
+    top: 2px;
+
+    padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    color: #000000;
+    z-index: 10;
+}
+
+.page-nav .page-nav-day {
+    flex-basis: calc(100% / 8);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.page-nav .page-nav-day + .page-nav-day {
+    margin-left: 1px;
+}
+
+.page-nav .page-nav-day .page-nav-day-week::after {
+    content: ',';
+}
+
+.page-nav .page-nav-day .page-nav-day-number::before {
+    content: ' ';
+}
+
+.page-nav .page-nav-day .page-nav-day-week, .page-nav-day-number {
+    display: block;
+}
+
+.page-nav .page-nav-day_chosen {
+    flex-grow: 1;
+    background-color: #FFFFFF;
+    font-weight: 700;
+    transform: scale(1.1);
+}
+
+.page-nav .page-nav-day_weekend {
+    color: #DE2121;
+}
+
+.page-nav .page-nav-day_next {
+    text-align: center;
+}
+
+.page-nav .page-nav-day_next::before {
+    content: '>';
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 2.4rem;
+}
+
+.page-nav .page-nav-day_previous {
+    text-align: center;
+}
+
+.page-nav .page-nav-day_previous::before {
+    content: '<';
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 2.4rem;
+}
+
+.page-nav .page-nav-day_today .page-nav-day-week::before {
+    content: 'Сегодня';
+    display: block;
+}
+
+.page-nav .page-nav-day_today .page-nav-day-week, .page-nav-day-number {
+    display: inline;
+}
+
+.movie {
+    position: relative;
+    padding: 1.5rem;
+    margin-top: 2.5rem;
+    background: rgba(241, 235, 230, 0.95);
+    color: #000000;
+}
+
+.movie .movie-info {
+    display: flex;
+}
+
+.movie .movie-poster {
+    position: relative;
+    width: 10.5rem;
+    height: 13.5rem;
+}
+
+.movie .movie-poster .movie-poster-image {
+    position: relative;
+    top: -3rem;
+    width: 10.5rem;
+    height: 13.5rem;
+}
+
+.movie .movie-poster::after {
+     content: '';
+     display: block;
+     position: absolute;
+     right: -0.7rem;
+     top: -3rem;
+     border: 1.5rem solid transparent;
+     border-bottom: 0 solid transparent;
+     border-right: 0 solid transparent;
+     border-left: 0.7rem solid rgb(119, 39, 32);
+}
+
+.movie .movie-description {
+    flex-grow: 1;
+    padding-left: 1.5rem;
+}
+
+.movie .movie-title {
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.movie .movie-synopsis {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.movie .movie-data {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 1rem;
+}
+
+.movie-data-duration, .movie-data-origin {
+    display: block;
+    padding: 3px 0px;
+}
+
+.movie .movie-seances-hall + .movie-seances-hall {
+    margin-top: 2rem;
+}
+
+.movie .movie-seances-hall .movie-seances-hall-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.movie .movie-seances-hall .movie-seances-list {
+    margin-top: 0.7rem;
+    font-size: 0;
+}
+
+.movie .movie-seances-hall .movie-seances-time-block {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.movie .movie-seances-hall .movie-seances-time-block:nth-last-of-type(n + 1) {
+     margin-right: 4px;
+}
+
+.movie .movie-seances-hall .movie-seances-time {
+    display: block;
+    padding: 8px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.acceptin-button {
+    display: block;
+    margin: 3rem auto 0;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    border: none;
+    padding: 12px 57px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.4rem;
+    background-color: #16A6AF;
+    color: #FFFFFF;
+}
+
+.backin-button {
+    display: block;
+    margin-left: 1rem;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    border: none;
+    padding: 12px 57px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.4rem;
+    background-color: #FFFFFF;
+    color: #63536c;
+}
+
+.buying {
+    background-color: rgba(241, 235, 230, 0.95);
+    padding-bottom: 3rem;
+}
+
+.buying-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.buying-info .buying-info-description {
+    padding-right: 1.5rem;
+}
+
+.buying-info .buying-info-title, .buying-info .buying-info-hall {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.buying-info .buying-info-start {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin: 0.7rem 0;
+}
+
+.buying-scheme {
+    text-align: center;
+    background-color: #171D24;
+    padding: 1.5rem 3rem 1.5rem;
+}
+
+.buying-scheme-wrapper {
+    font-size: 0;
+    display: inline-block;
+    background-image: url('../../images/client/screen.png');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-top: 3rem;
+}
+
+.buying-scheme-wrapper::before {
+    content: '';
+}
+
+.buying-scheme-row + .buying-scheme-row {
+    margin-top: 4px;
+}
+
+.buying-scheme-chair {
+    display: inline-block;
+    vertical-align: middle;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #525252;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.buying-scheme-chair:not(:first-of-type) {
+    margin-left: 4px;
+}
+
+.buying-scheme-chair_blocked {
+    opacity: 0;
+}
+
+.buying-scheme-chair_standard {
+    background-color: #FFFFFF;
+}
+
+.buying-scheme-chair_taken {
+    background-color: transparent;
+}
+
+.buying-scheme-chair_vip {
+    background-color: #F9953A;
+}
+
+.buying-scheme-chair_selected {
+    background-color: #25C4CE;
+    box-shadow: 0px 0px 4px #16A6AF;
+    transform: scale(1.2);
+}
+
+.buying-scheme-legend {
+    padding-top: 3rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: left;
+}
+
+.buying-scheme-legend .col {
+    max-width: 25rem;
+}
+
+.buying-scheme-legend .col:first-of-type {
+    padding-right: 1.5rem;
+    margin-left: auto;
+}
+
+.buying-scheme-legend .col:last-of-type {
+    margin-right: auto;
+}
+
+.buying-scheme-legend .buying-scheme-legend-price + .buying-scheme-legend-price {
+    margin-top: 1rem;
+}
+
+.ticket-check, .ticket-info-wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background-color: rgba(241, 235, 230, 0.95);
+}
+
+.ticket-check {
+    position: relative;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.ticket-check::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-image: url('../../images/client/border-top.png');
+    background-size: 10px 3px;
+}
+
+.ticket-check::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-image: url('../../images/client/border-bottom.png');
+    background-size: 10px 3px;
+}
+
+.ticket-info-wrapper {
+    position: relative;
+    margin-top: 6px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.ticket-info-wrapper::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-image: url('../../images/client/border-top.png');
+    background-size: 10px 3px;
+}
+
+.ticket-info-wrapper::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-image: url('../../images/client/border-bottom.png');
+    background-size: 10px 3px;
+}
+
+.ticket-check-title {
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: #C76F00;
+}
+
+.ticket-info {
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+.ticket-info + .ticket-info {
+    margin-top: 1rem;
+}
+
+.ticket-details {
+    font-weight: 700;
+}
+
+.ticket-hint {
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+}
+
+.ticket-hint + .ticket-hint {
+    margin-top: 1rem;
+}
+
+.ticket-info-qr {
+    display: block;
+    margin: 3rem auto 0;
+    width: 20rem;
+    height: 20rem;
+}
+
+@media screen and (min-width: 990px) {
+    .page-header, nav, main {
+        width: 990px;
+        margin: auto;
+    }
+    .movie, .buying {
+        border-radius: 2px;
+    }
+    .buying-info-hint {
+        display: none;
+    }
+}

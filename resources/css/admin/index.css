@@ -1,0 +1,691 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.admin-page {
+    min-height: 100vh;
+
+    background-image: url('../../images/admin/background.jpg');
+    background-color: rgba(0, 0, 0, 0.50);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-attachment: fixed;
+    counter-reset: num;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 62.5%;
+}
+
+input[type='radio'], input[type='submit'], button, .conf-step-header, select {
+    cursor: pointer;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.conf-steps, .page-header {
+    width: 972px;
+    margin: 0 auto;
+}
+
+.conf-step-wrapper, .conf-step-header, .page-header {
+    padding: 35px 42px 35px calc(2 * 42px + 20px);
+}
+
+.page-header {
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.page-header-title {
+    margin: 0;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+.page-header-title span {
+    font-weight: 50;
+}
+
+.page-header-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.46em;
+}
+
+.conf-step {
+    position: relative;
+    background-color: rgba(234, 233, 235, 0.95);
+}
+
+.conf-step::before {
+     content: '';
+     position: absolute;
+     left: calc(42px + 20px);
+     margin-left: -1px;
+     top: 0;
+     bottom: 0;
+     display: block;
+     width: 2px;
+     background-color: #BC95D6;
+ }
+
+.conf-step-header_opened + .conf-step-wrapper {
+    display: block;
+}
+
+.conf-step-header_closed + .conf-step-wrapper {
+    display: none;
+}
+
+.conf-step-header_closed::after {
+    transform: rotate(-90deg);
+}
+
+.conf-step-header {
+    position: relative;
+    box-sizing: border-box;
+    background-color: #63536C;
+    color: #FFFFFF;
+    transition-property: all;
+    transition-duration: .6s;
+    transition-timing-function: ease;
+}
+
+.conf-step-header::before {
+     content: '';
+     position: absolute;
+     left: calc(42px + 20px);
+     margin-left: -1px;
+     top: 0;
+     bottom: 0;
+     display: block;
+     width: 2px;
+     background-color: #BC95D6;
+}
+
+.conf-step-header::after {
+     content: '';
+     position: absolute;
+     top: calc(50% - 8px);
+     display: block;
+     right: 42px;
+     width: 24px;
+     height: 16px;
+     background-image: url('../../images/admin/switch.png');
+     background-size: 24px 16px;
+}
+
+.conf-step-header:hover, .conf-step-header:focus {
+     background-color: #89639e;
+ }
+
+.conf-step-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    counter-increment: num;
+    transition-property: all;
+    transition-duration: .6s;
+    transition-timing-function: ease;
+}
+
+.conf-step-title::before {
+     content: counter(num);
+     position: absolute;
+     display: block;
+     left: calc(42px + 20px);
+     top: 50%;
+     margin-left: -22px;
+     margin-top: -22px;
+     width: 44px;
+     height: 44px;
+     border-radius: 50%;
+     border: 5px solid #BC95D6;
+     background-color: #FFFFFF;
+     box-sizing: border-box;
+     color: #63536C;
+     font-weight: 900;
+     font-size: 1.8rem;
+     text-align: center;
+     letter-spacing: normal;
+}
+
+.conf-step-header:hover .conf-step-title{
+    letter-spacing: 2px;
+    transition-property: all;
+    transition-duration: .6s;
+    transition-timing-function: ease;
+}
+.conf-step-header:hover .conf-step-title::before {
+    letter-spacing: normal;
+}
+
+.conf-step:first-of-type .conf-step-header::before {
+    top: 50%;
+}
+
+.conf-step:last-of-type .conf-step-header::before{
+    bottom: 50%;
+}
+
+.conf-step:last-of-type::before {
+    display: none;
+}
+
+.conf-step-paragraph {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.conf-step-paragraph:not(:first-of-type) {
+    margin-top: 35px;
+}
+
+.conf-step-list {
+    list-style: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 14px 0 5px 25px;
+}
+
+.conf-step-list li {
+    position: relative;
+}
+
+.conf-step-list li + li {
+    margin-top: 10px;
+}
+
+.conf-step-list li::before {
+    content: '–';
+    position: absolute;
+    left: -14px;
+}
+
+.conf-step-button, .login-button {
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    border: none;
+    background-color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1rem;
+    transition-property: background-color;
+    transition-duration: .5s;
+    transition-timing-function: ease;
+}
+
+.conf-step-button:hover, .login-button:hover, .conf-step-button:focus, .login-button:focus {
+    background-color: #EEEAF1;
+    outline: none;
+}
+
+.conf-step-button:active, .login-button:active {
+    position: relative;
+    top: 2px;
+    background-color: #63536C;
+    color: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+.conf-step-button + .conf-step-button, .login-button + .login-button {
+    margin-left: 12px;
+}
+
+.conf-step-buttons {
+    margin-top: 10px;
+}
+
+.conf-step-button-regular {
+    color: #63536C;
+    padding: 12px 32px;
+    margin-top: 17px;
+}
+
+.conf-step-button.conf-step-button-accent, .login-button {
+    color: #FFFFFF;
+    background-color: #16A6AF;
+    padding: 12px 32px;
+    margin-top: 17px;
+}
+
+.conf-step-button.conf-step-button-accent:hover, .login-button:hover,
+.conf-step-button.conf-step-button-accent:focus, .login-button:focus {
+    background-color: #2FC9D2;
+    outline: none;
+}
+
+.conf-step-button.conf-step-button-accent:active, .login-button:active {
+    position: relative;
+    top: 2px;
+    background-color: #146C72;
+    color: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+.conf-step-button-trash {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    vertical-align: text-top;
+}
+
+.conf-step-button-trash::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    background-image: url('../../images/admin/trash-sprite.png');
+    background-position: 0 0;
+    background-size: 20px 12px;
+    background-repeat: no-repeat;
+}
+
+.conf-step-button-trash:active::before {
+    background-position: -11px 0;
+}
+
+.conf-step-legend {
+    color: #848484;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+
+.conf-step-legend .multiplier {
+    font-family: monospace;
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+.conf-step-legend .conf-step-chair:not(:first-of-type) {
+    margin-left: 20px;
+}
+
+.conf-step-hint {
+    margin-top: 10px;
+}
+
+.conf-step-label, .login-label {
+    display: inline-block;
+    font-size: 1rem;
+    color: #848484;
+}
+
+.conf-step-label-fullsize {
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+.conf-step-label-fullsize:last-of-type {
+    margin-bottom: 0;
+}
+
+.conf-step-label-fullsize .conf-step-input {
+    width: 100%;
+}
+
+.conf-step-input, .login-input {
+    display: block;
+    width: 100px;
+    margin-top: 1px;
+    padding: 8px;
+    font-size: 1rem;
+    color: #000000;
+    border: 1px solid #b7b7b7;
+}
+
+.conf-step-input:focus, .login-input:focus {
+    outline: 1px #CF87FF solid;
+    outline-offset: -1px;
+}
+
+.conf-step-chair {
+    display: inline-block;
+    vertical-align: middle;
+    width: 26px;
+    height: 26px;
+    border-width: 2px;
+    border-style: solid;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.conf-step-chair_standard {
+    border-color: #393939;
+    background-color: #C4C4C4;
+}
+
+.conf-step-chair_vip {
+    border-color: #0a828a;
+    background-color: #b0d6d8;
+    background-image: url('../../images/admin/green-pattern.png');
+    background-repeat: repeat;
+}
+
+.conf-step-chair_blocked {
+    border-color: #C4C4C4;
+}
+
+.conf-step-selectors-box {
+    font-size: 0;
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.conf-step-selectors-box li {
+    position: relative;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.conf-step-selectors-box .conf-step-radio {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    width: 80px;
+    height: 42px;
+    opacity: 0;
+}
+
+.conf-step-selectors-box .conf-step-selector {
+    position: relative;
+    display: block;
+    padding: 13px 21px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.8rem;
+    transition-property: background-color;
+    transition-duration: .5s;
+    transition-timing-function: ease;
+    z-index: 5;
+}
+
+.conf-step-selectors-box .conf-step-radio:checked + .conf-step-selector {
+    background-color: #FFFFFF;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.24), 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
+    transform: scale(1.1);
+    font-weight: 900;
+    font-size: 0.8rem;
+    z-index: 10;
+}
+
+.conf-step-selectors-box .conf-step-radio:hover + .conf-step-selector {
+    background-color: rgba(255, 255, 255, 0.90);
+}
+
+.conf-step-hall {
+    position: relative;
+    padding: 62px 32px 34px;
+    border: 2px solid #000000;
+    text-align: center;
+}
+
+.conf-step-hall::before {
+     content: ' экран';
+     position: absolute;
+     top: 24px;
+     left: 1.2em;
+     right: 0;
+     font-size: 1rem;
+     letter-spacing: 1.2em;
+     text-transform: uppercase;
+ }
+
+.conf-step-hall .conf-step-chair {
+    cursor: pointer;
+}
+
+.conf-step-hall .conf-step-hall-wrapper {
+    display: inline-block;
+}
+
+.conf-step-hall .conf-step-hall-wrapper .conf-step__row {
+    font-size: 0;
+}
+
+.conf-step-hall .conf-step-hall-wrapper .conf-step-row + .conf-step-row {
+    margin-top: 10px;
+}
+
+.conf-step-hall .conf-step-hall-wrapper .conf-step-chair + .conf-step-chair{
+    margin-left: 10px;
+}
+
+.conf-step-movies {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.conf-step-movies .conf-step-movie {
+    position: relative;
+    width: calc((100% - 30px) / 3);
+    min-height: 52px;
+    padding: 8px 8px 8px 48px;
+    background: #FFEB85;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.conf-step-movies .conf-step-movie:nth-of-type(3n + 2) {
+    margin: 0 15px;
+}
+
+.conf-step-movies .conf-step-movie:nth-of-type(n + 4) {
+    margin-top: 15px;
+}
+
+.conf-step-movies .conf-step-movie-poster {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 35px;
+    height: 44px;
+    background-color: #63536C;
+}
+
+.conf-step-movies .conf-step-movie-title {
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.conf-step-movies .conf-step-movie-duration {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.conf-step-seances-hall {
+    margin: 35px;
+}
+
+.conf-step-seances-title {
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.conf-step-seances-timeline {
+    position: relative;
+    outline: 1px solid #848484;
+    padding: 10px 0;
+    height: 40px;
+    box-sizing: content-box;
+    width: calc(1440px * 0.5);
+}
+
+.conf-step-seances-movie {
+    position: absolute;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    padding: 10px 2px 10px 10px;
+}
+
+.conf-step-seances-movie-title {
+    overflow: hidden;
+    line-height: 10px;
+    height: 100%;
+}
+
+.conf-step-seances-movie-start {
+    position: absolute;
+    bottom: -33px;
+    left: -14px;
+    color: #848484;
+    font-size: 1rem;
+}
+
+.conf-step-seances-movie::before {
+     content: '';
+     position: absolute;
+     display: block;
+     width: 1px;
+     height: 5px;
+     bottom: -17px;
+     left: 0;
+     background-color: #848484;
+}
+
+.login {
+    width: 480px;
+    margin: 0 auto;
+    position: relative;
+    background-color: rgba(234, 233, 235, 0.95);
+}
+
+.login-wrapper {
+    padding: 35px calc(2 * 42px + 20px);
+}
+
+.login-header {
+    position: relative;
+    box-sizing: border-box;
+    padding: 16px calc(2 * 42px + 20px);
+    background-color: #63536C;
+    color: #FFFFFF;
+}
+
+.login-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.login-label {
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+.login-label:last-of-type {
+    margin-bottom: 0;
+}
+
+.login-input {
+    width: 100%;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.popup-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.popup.active {
+    display: block;
+    background: rgba(0,0,0,0.7);
+    animation: 0.5s ease-out 0s 1 darken;
+}
+
+.popup.active .popup-content {
+    top: 100px;
+    animation: 0.5s ease-out 0s 1 slideFromTop;
+}
+
+
+.popup-container {
+    position: relative;
+    width: 100%;
+}
+
+.popup-content {
+    position: relative;
+    top: -50vh;
+    background-color: rgba(234, 233, 235, 0.95);
+    width: 960px;
+    margin: 0 auto;
+}
+
+.popup-header {
+    box-sizing: border-box;
+    padding: 16px 42px;
+    background-color: #63536C;
+    color: #FFFFFF;
+}
+
+.popup-wrapper {
+    padding: 35px calc(2 * 42px + 20px);
+}
+
+.popup-dismiss {
+    float: right;
+}
+
+.popup-dismiss::before {
+    content: '';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    right: 1.5em;
+    background-image: url('../../images/admin/close.png');
+    background-position: 0 0;
+    background-size: 1em;
+    background-repeat: no-repeat;
+}
+
+.input-label {
+    padding-left: 8px;
+    font-size: 0.8rem;
+}
+
+.popup-dismiss-film {
+    float: right;
+}
+
+.popup-dismiss-film::before {
+    content: '';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    top: 3px;
+    right: 3px;
+    background-image: url('../../images/admin/close-main.png');
+    background-position: 0 0;
+    background-size: 1em;
+    background-repeat: no-repeat;
+}
