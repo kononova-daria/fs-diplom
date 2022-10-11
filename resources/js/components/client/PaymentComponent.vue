@@ -11,6 +11,8 @@
             <p class="ticket-info">Начало сеанса: <span class="ticket-details ticket-start">{{ getTime(data?.session?.start) }}</span></p>
             <p v-if="!ticket" class="ticket-info">Стоимость: <span class="ticket-details ticket-cost">{{ getCost() }}</span> рублей</p>
 
+            <p v-if="error" class="conf-step-paragraph" style="color:#a5090c; padding: 15px 0px;">{{ error }}</p>
+
             <button v-if="!ticket" @click="getTicket()" class="acceptin-button">Получить код бронирования</button>
 
             <div v-if="ticket" v-html="ticket" style="display: flex; justify-content: center; margin-top: 1.5rem;"></div>
@@ -38,6 +40,7 @@ export default {
     data() {
         return {
             ticket: null,
+            error: null,
         }
     },
     methods: {
@@ -66,11 +69,12 @@ export default {
         },
 
         getTicket() {
+            this.error = null;
             Promise.all([
                 axios.post('client/orders', {session: this.data.session.id, place: this.data.places.map((item) => item.id)}),
             ]).then((response) => {
                 this.ticket = response.length && response[0]?.data;
-            });
+            }, (error) => this.error = error.response.data[0]);
         }
     }
 }

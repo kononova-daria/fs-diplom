@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\SessionIsValid;
+use App\Http\Middleware\CheckOrder;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HallsController;
 use App\Http\Controllers\PlacesController;
@@ -23,7 +24,7 @@ Route::get('/client/places', [PlacesController::class, 'index']);
 Route::get('/client/types', [TypesController::class, 'index']);
 
 Route::get('/client/orders', [OrdersController::class, 'index']);
-Route::post('/client/orders', [OrdersController::class, 'store']);
+Route::post('/client/orders', [OrdersController::class, 'store'])->middleware(CheckOrder::class);
 
 Route::group(['middleware' => 'auth'], static function () {
     Route::get('/admin', static function () {

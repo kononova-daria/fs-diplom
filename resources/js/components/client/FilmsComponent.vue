@@ -21,6 +21,7 @@
                     <a class="movie-seances-time" @click="selectSession(session)">{{ getTime(session.start) }}</a>
                 </li>
             </ul>
+            <p v-if="Number(error.film) === Number(film.id) && Number(error.hall) === Number(hall.id)" class="conf-step-paragraph" style="color:#a5090c; padding: 5px 0px;">{{ error.message }}</p>
         </div>
     </section>
 </template>
@@ -34,7 +35,7 @@ export default {
     },
     data() {
         return {
-
+            error: {film: null, hall: null, message: 'К сожалению, для выбранного времени не осталось свободных мест.'},
         }
     },
     methods: {
@@ -46,7 +47,30 @@ export default {
         },
 
         selectSession(session) {
-            this.$emit('selectSession', session);
+            this.error.film = null;
+            this.error.hall = null;
+
+            if (session) {
+                Promise.all([
+                    axios.get('/client/places', {params: {hall: session.hall}}),
+                    axios.get('/client/orders', {params: {session: session.id}}),
+                ]).then(([places, orders]) => {
+                    const placesList = places?.data || null;
+                    const ordersList = orders?.data || null;
+                    if (ordersList && placesList) {
+                        ordersList.forEach((order) => {
+                            const place = placesList.find((item) => item.id === order.place);
+                            place.type = 4;
+                        })
+                        if (placesList.filter((item) => Number(item.type) === 3 || Number(item.type) === 4).length !== placesList.length) {
+                            this.$emit('selectSession', session);
+                        } else {
+                            this.error.film = session.film;
+                            this.error.hall = session.hall;
+                        }
+                    }
+                });
+            }
         }
     }
 }

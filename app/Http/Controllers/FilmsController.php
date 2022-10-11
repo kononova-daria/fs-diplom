@@ -20,8 +20,12 @@ class FilmsController extends Controller
             case 'client/films':
                 foreach ($films as $film) {
                     $halls = DB::table('halls')->where('status', true)->get();
+                    $halls = array_filter([...$halls], static function ($value) {
+                        $places = DB::table('places')->where('hall', $value->id)->get();
+                        return count($places);
+                    });
                     $sessions = DB::table('sessions')->where('film', $film->id)->get();
-                    $film->halls = $halls;
+                    $film->halls = collect($halls);
                     foreach ($film->halls as $key=>$hall) {
                         $hall->sessions = [];
                         foreach ($sessions as $session) {
