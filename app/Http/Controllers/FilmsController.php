@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Film;
+use App\Repositories\FilmRepository;
+use App\Repositories\HallRepository;
+use App\Repositories\PlaceRepository;
+use App\Repositories\FilmSessionRepository;
+use App\Repositories\OrderRepository;
 
 class FilmsController extends Controller
 {
@@ -18,12 +22,12 @@ class FilmsController extends Controller
                 break;
             case 'client/films':
                 foreach ($films as $film) {
-                    $halls = DB::table('halls')->where('status', true)->get();
+                    $halls = HallRepository::search('status', true);
                     $halls = array_filter([...$halls], static function ($value) {
-                        $places = DB::table('places')->where('hall_id', $value->id)->get();
+                        $places = PlaceRepository::search('hall_id', $value->id);
                         return count($places);
                     });
-                    $sessions = DB::table('film_sessions')->where('film_id', $film->id)->get();
+                    $sessions = FilmSessionRepository::search('film_id', $film->id);
                     $film->halls = collect($halls);
                     foreach ($film->halls as $key=>$hall) {
                         $hall->sessions = [];
@@ -52,18 +56,17 @@ class FilmsController extends Controller
 
     public function show($id)
     {
-        return DB::table('films')->find($id);
+        return FilmRepository::getById($id);
     }
 
     public function destroy($id)
     {
-        $sessions = DB::table('film_sessions')->where('film_id', $id)->get();
+        $sessions = FilmSessionRepository::search('film_id', $id);
         foreach ($sessions as $value) {
-            DB::table('orders')->where('session_id', $value->id)->delete();
+            OrderRepository::delete('session_id', $value->id);
         }
-
-        DB::table('film_sessions')->where('film_id', $id)->delete();
-        DB::table('films')->where('id', $id)->delete();
+        FilmSessionRepository::delete('film_id', $id);
+        FilmRepository::delete('id', $id);
         return 'success';
     }
 }

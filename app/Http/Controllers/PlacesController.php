@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Place;
+use App\Repositories\PlaceRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PlacesController extends Controller
 {
@@ -12,7 +12,7 @@ class PlacesController extends Controller
     {
         $data = $request->all();
         $hall = $data['hall'];
-        return DB::table('places')->where('hall_id', $hall)->get();
+        return PlaceRepository::search('hall_id', $hall);
     }
 
     public function store(Request $request)
@@ -21,7 +21,7 @@ class PlacesController extends Controller
         $places = $data['places'];
         $hall = $places[0]['hall_id'];
 
-        DB::table('places')->where('hall_id', $hall)->delete();
+        PlaceRepository::delete('hall_id', $hall);
 
         foreach ($places as $iValue) {
             $place = new Place;

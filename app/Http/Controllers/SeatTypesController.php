@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\SeatType;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 class SeatTypesController extends Controller

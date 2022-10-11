@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hall;
+use App\Repositories\HallRepository;
+use App\Repositories\PlaceRepository;
+use App\Repositories\FilmSessionRepository;
+use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HallsController extends Controller
 {
@@ -23,7 +26,7 @@ class HallsController extends Controller
 
     public function show($id)
     {
-        return DB::table('halls')->find($id);
+        return HallRepository::getById($id);
     }
 
     public function update(Request $request, $id)
@@ -38,14 +41,13 @@ class HallsController extends Controller
 
     public function destroy($id)
     {
-        $sessions = DB::table('film_sessions')->where('hall_id', $id)->get();
+        $sessions = FilmSessionRepository::search('hall_id', $id);
         foreach ($sessions as $value) {
-            DB::table('orders')->where('session_id', $value->id)->delete();
+            OrderRepository::delete('session_id', $value->id);
         }
-
-        DB::table('places')->where('hall_id', $id)->delete();
-        DB::table('film_sessions')->where('hall_id', $id)->delete();
-        DB::table('halls')->where('id', $id)->delete();
+        PlaceRepository::delete('hall_id', $id);
+        FilmSessionRepository::delete('hall_id', $id);
+        HallRepository::delete('id', $id);
         return 'success';
     }
 }

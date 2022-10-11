@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Repositories\OrderRepository;
 
 class OrdersController extends Controller
 {
@@ -13,7 +13,7 @@ class OrdersController extends Controller
     {
         $data = $request->all();
         $session = $data['session'];
-        return DB::table('orders')->where('session_id', $session)->get();
+        return OrderRepository::search('session_id', $session);
     }
 
     public function store(Request $request)
