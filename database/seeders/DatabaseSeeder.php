@@ -14,23 +14,23 @@ class DatabaseSeeder extends Seeder
             'password' => \Hash::make('admin111'),
         ]);
 
-        \App\Models\Type::factory()->create([
+        \App\Models\SeatType::factory()->create([
             'name' => 'Обычные кресла',
             'key' => 'standard',
         ]);
-        \App\Models\Type::factory()->create([
+        \App\Models\SeatType::factory()->create([
             'name' => 'VIP кресла',
             'key' => 'vip',
         ]);
-        \App\Models\Type::factory()->create([
+        \App\Models\SeatType::factory()->create([
             'name' => 'Заблокированные (нет кресла)',
             'key' => 'blocked',
         ]);
-        \App\Models\Type::factory()->create([
+        \App\Models\SeatType::factory()->create([
             'name' => 'Занятые кресла',
             'key' => 'taken',
         ]);
-        \App\Models\Type::factory()->create([
+        \App\Models\SeatType::factory()->create([
             'name' => 'Выбранные кресла',
             'key' => 'selected',
         ]);

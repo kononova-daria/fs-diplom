@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('place');
             $table->foreign('place')->references('id')->on('places');
             $table->integer('session');
-            $table->foreign('session')->references('id')->on('sessions');
+            $table->foreign('session')->references('id')->on('film_sessions');
             $table->timestamps();
         });
     }

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Type;
+use App\Models\SeatType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-class TypesController extends Controller
+class SeatTypesController extends Controller
 {
     public function index()
     {
-        $types = Type::all();
+        $types = SeatType::all();
 
         switch (Route::getFacadeRoot()->current()->uri()) {
             case 'admin/types':

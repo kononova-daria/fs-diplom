@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('row');
             $table->integer('num');
             $table->integer('type');
-            $table->foreign('type')->references('id')->on('types');
+            $table->foreign('type')->references('id')->on('seat_types');
             $table->timestamps();
         });
     }

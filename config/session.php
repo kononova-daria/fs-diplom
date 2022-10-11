@@ -6,7 +6,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Session Driver
+    | Default FilmSession Driver
     |--------------------------------------------------------------------------
     |
     | This option controls the default session "driver" that will be used on
@@ -22,7 +22,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Lifetime
+    | FilmSession Lifetime
     |--------------------------------------------------------------------------
     |
     | Here you may specify the number of minutes that you wish the session
@@ -37,12 +37,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Encryption
+    | FilmSession Encryption
     |--------------------------------------------------------------------------
     |
     | This option allows you to easily specify that all of your session data
     | should be encrypted before it is stored. All encryption will be run
-    | automatically by Laravel and you can use the Session like normal.
+    | automatically by Laravel and you can use the FilmSession like normal.
     |
     */
 
@@ -50,7 +50,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session File Location
+    | FilmSession File Location
     |--------------------------------------------------------------------------
     |
     | When using the native session driver, we need a location where session
@@ -63,7 +63,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Database Connection
+    | FilmSession Database Connection
     |--------------------------------------------------------------------------
     |
     | When using the "database" or "redis" session drivers, you may specify a
@@ -76,7 +76,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Database Table
+    | FilmSession Database Table
     |--------------------------------------------------------------------------
     |
     | When using the "database" session driver, you may specify the table we
@@ -89,7 +89,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cache Store
+    | FilmSession Cache Store
     |--------------------------------------------------------------------------
     |
     | While using one of the framework's cache driven session backends you may
@@ -104,7 +104,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Sweeping Lottery
+    | FilmSession Sweeping Lottery
     |--------------------------------------------------------------------------
     |
     | Some session drivers must manually sweep their storage location to get
@@ -117,7 +117,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cookie Name
+    | FilmSession Cookie Name
     |--------------------------------------------------------------------------
     |
     | Here you may change the name of the cookie used to identify a session
@@ -133,7 +133,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cookie Path
+    | FilmSession Cookie Path
     |--------------------------------------------------------------------------
     |
     | The session cookie path determines the path for which the cookie will
@@ -146,7 +146,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cookie Domain
+    | FilmSession Cookie Domain
     |--------------------------------------------------------------------------
     |
     | Here you may change the domain of the cookie used to identify a session

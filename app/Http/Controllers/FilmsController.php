@@ -23,7 +23,7 @@ class FilmsController extends Controller
                         $places = DB::table('places')->where('hall', $value->id)->get();
                         return count($places);
                     });
-                    $sessions = DB::table('sessions')->where('film', $film->id)->get();
+                    $sessions = DB::table('film_sessions')->where('film', $film->id)->get();
                     $film->halls = collect($halls);
                     foreach ($film->halls as $key=>$hall) {
                         $hall->sessions = [];
@@ -57,12 +57,12 @@ class FilmsController extends Controller
 
     public function destroy($id)
     {
-        $sessions = DB::table('sessions')->where('film', $id)->get();
+        $sessions = DB::table('film_sessions')->where('film', $id)->get();
         foreach ($sessions as $value) {
             DB::table('orders')->where('session', $value->id)->delete();
         }
 
-        DB::table('sessions')->where('film', $id)->delete();
+        DB::table('film_sessions')->where('film', $id)->delete();
         DB::table('films')->where('id', $id)->delete();
         return 'success';
     }

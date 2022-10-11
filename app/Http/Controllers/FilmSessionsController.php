@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Session;
+use App\Models\FilmSession;
 use Illuminate\Support\Facades\DB;
 
-class SessionsController extends Controller
+class FilmSessionsController extends Controller
 {
     public function index()
     {
-        $sessions = Session::all();
+        $sessions = FilmSession::all();
         foreach ($sessions as $value) {
             $value->film = DB::table('films')->where('id', $value->film)->get()->first();
         }
@@ -19,7 +19,7 @@ class SessionsController extends Controller
 
     public function store(Request $request)
     {
-        $session = new Session;
+        $session = new FilmSession;
         $form = $request->all();
         $session->fill($form)->save();
         return 'success';
@@ -28,7 +28,7 @@ class SessionsController extends Controller
     public function destroy($id)
     {
         DB::table('orders')->where('session', $id)->delete();
-        DB::table('sessions')->where('id', $id)->delete();
+        DB::table('film_sessions')->where('id', $id)->delete();
         return 'success';
     }
 }

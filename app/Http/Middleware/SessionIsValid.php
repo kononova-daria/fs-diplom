@@ -10,7 +10,7 @@ class SessionIsValid
 {
     public function handle(Request $request, Closure $next)
     {
-        $sessions = DB::table('sessions')->where('hall', $request->input('hall'))->get();
+        $sessions = DB::table('film_sessions')->where('hall', $request->input('hall'))->get();
         if (count($sessions)) {
             foreach ($sessions as $value) {
                 if ($request->input('start') >= $value->start && $request->input('start') <= $value->end) {
