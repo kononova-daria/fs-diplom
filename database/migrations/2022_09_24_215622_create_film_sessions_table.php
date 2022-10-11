@@ -12,10 +12,10 @@ return new class extends Migration
             $table->id();
             $table->integer('start');
             $table->integer('end');
-            $table->integer('film');
-            $table->foreign('film')->references('id')->on('films');
-            $table->integer('hall');
-            $table->foreign('hall')->references('id')->on('halls');
+            $table->integer('film_id');
+            $table->foreign('film_id')->references('id')->on('films');
+            $table->integer('hall_id');
+            $table->foreign('hall_id')->references('id')->on('halls');
             $table->timestamps();
         });
     }

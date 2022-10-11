@@ -10,8 +10,8 @@ class CheckOrder
 {
     public function handle(Request $request, Closure $next)
     {
-        foreach ($request->input('place') as $place) {
-            $orders = DB::table('orders')->where('session', $request->input('session'))->where('place', $place)->get();
+        foreach ($request->input('places') as $place) {
+            $orders = DB::table('orders')->where('session_id', $request->input('session_id'))->where('place_id', $place)->get();
             if (count($orders)) {
                 return response(['Выбранные места уже заняты. Пожалуйста, перезагрузите страницу, чтобы получить актуальные данные.'], 400);
             }

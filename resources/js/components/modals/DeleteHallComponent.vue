@@ -36,7 +36,6 @@ export default {
         deleteItem() {
             if (this.hall?.id) {
                 axios.delete(`/admin/halls/${this.hall.id}`).then((response) => {
-                    console.log(response)
                     if (response.data === 'success') {
                         window.location = '/admin';
                     };

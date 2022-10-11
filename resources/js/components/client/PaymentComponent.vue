@@ -55,7 +55,7 @@ export default {
             let cost = 0;
             if (this.data?.places && this.data?.hall) {
                 this.data.places.forEach((item) => {
-                    switch (Number(item.type)) {
+                    switch (Number(item.type_id)) {
                         case 1:
                             cost += Number(this.data.hall.price_standard);
                             break;
@@ -70,10 +70,9 @@ export default {
 
         getTicket() {
             this.error = null;
-            Promise.all([
-                axios.post('client/orders', {session: this.data.session.id, place: this.data.places.map((item) => item.id)}),
-            ]).then((response) => {
-                this.ticket = response.length && response[0]?.data;
+
+            axios.post('client/orders', {session_id: this.data.session.id, places: this.data.places.map((item) => item.id)}).then((response) => {
+                this.ticket = response?.data;
             }, (error) => this.error = error.response.data[0]);
         }
     }

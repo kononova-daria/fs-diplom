@@ -19,7 +19,7 @@
             <div class="conf-step-seances-hall" v-for="hall of halls">
                 <h3 class="conf-step-seances-title">{{ hall.name }}</h3>
                 <div class="conf-step-seances-timeline">
-                    <div v-for="session of sessionsList.filter((item) => Number(item.hall) === Number(hall.id))" @click="toggleModalDeleteSession(session)">
+                    <div v-for="session of sessionsList.filter((item) => Number(item.hall_id) === Number(hall.id))" @click="toggleModalDeleteSession(session)">
                         <div class="conf-step-seances-movie" :style="{width: session?.durationView, backgroundColor: '#0a828a', left: session?.coordinateView}">
                             <p class="conf-step-seances-movie-title">{{ session?.film?.name }}</p>
                             <p class="conf-step-seances-movie-start">{{ session?.startView }}</p>

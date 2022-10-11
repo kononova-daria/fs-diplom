@@ -1,6 +1,6 @@
 <template>
     <nav class="page-nav">
-        <a class="page-nav-day page-nav-day_previous" :style="{color: dates[0].today && '#848484'}" href="#" @click="changeDates($event, 'previous')"></a>
+        <a class="page-nav-day page-nav-day_previous" :style="{color: dates[0].today && '#848484' || '#000000'}" href="#" @click="changeDates($event, 'previous')"></a>
         <a v-for="date in dates" class="page-nav-day"
            v-bind:class="{'page-nav-day_today': date?.today,
                           'page-nav-day_chosen': date?.selected,

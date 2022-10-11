@@ -12,7 +12,7 @@ class FilmSessionsController extends Controller
     {
         $sessions = FilmSession::all();
         foreach ($sessions as $value) {
-            $value->film = DB::table('films')->where('id', $value->film)->get()->first();
+            $value->film = DB::table('films')->where('id', $value->film_id)->get()->first();
         }
         return $sessions;
     }
@@ -27,7 +27,7 @@ class FilmSessionsController extends Controller
 
     public function destroy($id)
     {
-        DB::table('orders')->where('session', $id)->delete();
+        DB::table('orders')->where('session_id', $id)->delete();
         DB::table('film_sessions')->where('id', $id)->delete();
         return 'success';
     }

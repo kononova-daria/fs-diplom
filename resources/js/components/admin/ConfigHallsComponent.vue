@@ -33,7 +33,7 @@
             <div class="conf-step-hall">
                 <div class="conf-step-hall-wrapper">
                     <div class="conf-step-row" v-for="row of placesForView">
-                        <span v-for="data in row" :class="`conf-step-chair conf-step-chair_${typesList.find((item) => item.id === Number(data.type))?.key || 'blocked'}`" @click="changeType(data)"></span>
+                        <span v-for="data in row" :class="`conf-step-chair conf-step-chair_${typesList.find((item) => item.id === Number(data.type_id))?.key || 'blocked'}`" @click="changeType(data)"></span>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@ export default {
                     newPlaces[i] = this.placesForView[i].slice();
                     if (newPlaces[i].length < this.nums) {
                         for (let j = this.nums - newPlaces[i].length; j > 0; j--) {
-                            newPlaces[i].push({hall: this.selectedHallId, row: i, num: this.nums - j + 1, type: 3});
+                            newPlaces[i].push({hall_id: this.selectedHallId, row: i, num: this.nums - j + 1, type_id: 3});
                         }
                     } else if (newPlaces[i].length > this.nums) {
                         newPlaces[i] = newPlaces[i].slice(0, this.nums);
@@ -130,7 +130,7 @@ export default {
                 } else {
                     newPlaces[i] = [];
                     for (let j = 1; j <= this.nums; j++) {
-                        newPlaces[i].push({hall: this.selectedHallId, row: i, num: j, type: 3});
+                        newPlaces[i].push({hall_id: this.selectedHallId, row: i, num: j, type_id: 3});
                     }
                 }
             }
@@ -139,11 +139,11 @@ export default {
         },
 
         changeType(place) {
-            const type = Number(place.type);
+            const type = Number(place.type_id);
             if (type === 3) {
-                place.type = 1;
+                place.type_id = 1;
             } else {
-                place.type = type + 1;
+                place.type_id = type + 1;
             }
         },
 

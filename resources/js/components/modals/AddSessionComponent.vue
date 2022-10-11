@@ -12,7 +12,7 @@
                     <div>
                         <label class="conf-step-label conf-step-label-fullsize" for="hall">
                             <span class="input-label">Название зала</span>
-                            <select class="conf-step-input" name="hall" v-model="formData.hall" required>
+                            <select class="conf-step-input" name="hall" v-model="formData.hall_id" required>
                                 <option v-for="hall of halls" :value="hall.id">{{ hall.name }}</option>
                             </select>
                         </label>
@@ -43,7 +43,7 @@ export default {
     data() {
         return {
             formData: {
-                hall: null,
+                hall_id: null,
                 start: null,
             },
             error: null,
@@ -55,7 +55,7 @@ export default {
             const tstmpStart = time && (new Date(1970, 0, 1, Number(time[0]), Number(time[1]))).getTime()/1000;
             const tstmpEnd = tstmpStart + Number(this.film.duration)*60;
 
-            axios.post('/admin/sessions', {...this.formData, film: this.film.id, start: tstmpStart, end: tstmpEnd}).then((response) => {
+            axios.post('/admin/sessions', {...this.formData, film_id: this.film.id, start: tstmpStart, end: tstmpEnd}).then((response) => {
                 if (response?.data === 'success') {
                     this.$emit('updateSessions');
                     this.close();

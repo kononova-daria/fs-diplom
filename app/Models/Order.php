@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'place',
-        'session',
+        'place_id',
+        'session_id',
     ];
 }

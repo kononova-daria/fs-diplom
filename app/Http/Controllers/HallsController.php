@@ -38,13 +38,13 @@ class HallsController extends Controller
 
     public function destroy($id)
     {
-        $sessions = DB::table('film_sessions')->where('hall', $id)->get();
+        $sessions = DB::table('film_sessions')->where('hall_id', $id)->get();
         foreach ($sessions as $value) {
-            DB::table('orders')->where('session', $value->id)->delete();
+            DB::table('orders')->where('session_id', $value->id)->delete();
         }
 
-        DB::table('places')->where('hall', $id)->delete();
-        DB::table('film_sessions')->where('hall', $id)->delete();
+        DB::table('places')->where('hall_id', $id)->delete();
+        DB::table('film_sessions')->where('hall_id', $id)->delete();
         DB::table('halls')->where('id', $id)->delete();
         return 'success';
     }

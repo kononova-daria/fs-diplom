@@ -52,21 +52,21 @@ export default {
 
             if (session) {
                 Promise.all([
-                    axios.get('/client/places', {params: {hall: session.hall}}),
+                    axios.get('/client/places', {params: {hall: session.hall_id}}),
                     axios.get('/client/orders', {params: {session: session.id}}),
                 ]).then(([places, orders]) => {
                     const placesList = places?.data || null;
                     const ordersList = orders?.data || null;
                     if (ordersList && placesList) {
                         ordersList.forEach((order) => {
-                            const place = placesList.find((item) => item.id === order.place);
-                            place.type = 4;
+                            const place = placesList.find((item) => item.id === order.place_id);
+                            place.type_id = 4;
                         })
-                        if (placesList.filter((item) => Number(item.type) === 3 || Number(item.type) === 4).length !== placesList.length) {
+                        if (placesList.filter((item) => Number(item.type_id) === 3 || Number(item.type_id) === 4).length !== placesList.length) {
                             this.$emit('selectSession', session);
                         } else {
-                            this.error.film = session.film;
-                            this.error.hall = session.hall;
+                            this.error.film = session.film_id;
+                            this.error.hall = session.hall_id;
                         }
                     }
                 });

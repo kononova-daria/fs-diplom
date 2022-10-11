@@ -17,11 +17,7 @@
 composer install
 npm install
 ```
-2. Генерация ключа приложения командой:
-```
-php artisan key:generate
-```
-3. Создание БД:
+2. Создание БД:
     1. Создать файл database.sqlite;
     2. Переименовать файл .env.example в .env и указать следующие DB_CONNECTION и DB_DATABASE:
     ```
@@ -36,12 +32,17 @@ php artisan key:generate
     ```
     php artisan db:seed
     ```
+3. Генерация ключа приложения командой:
+```
+php artisan key:generate
+```
 4. Сборка приложения с помощью команды:
 ```
-npm run dev
+npm run build
 ```
 5. Запуск сервера через команду:
 ```
+npm run dev
 php artisan serve
 ```
 

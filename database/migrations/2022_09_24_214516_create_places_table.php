@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->integer('hall');
-            $table->foreign('hall')->references('id')->on('halls');
+            $table->integer('hall_id');
+            $table->foreign('hall_id')->references('id')->on('halls');
             $table->integer('row');
             $table->integer('num');
-            $table->integer('type');
-            $table->foreign('type')->references('id')->on('seat_types');
+            $table->integer('type_id');
+            $table->foreign('type_id')->references('id')->on('seat_types');
             $table->timestamps();
         });
     }

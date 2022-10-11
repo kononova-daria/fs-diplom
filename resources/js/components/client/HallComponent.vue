@@ -10,7 +10,7 @@
         <div class="buying-scheme">
             <div class="buying-scheme-wrapper">
                 <div class="buying-scheme-row" v-for="row of placesForView">
-                    <span v-for="data in row" :class="`buying-scheme-chair buying-scheme-chair_${typesList.find((item) => item.id === Number(data.type))?.key || 'blocked'}`" @click="selectPlace(data)"></span>
+                    <span v-for="data in row" :class="`buying-scheme-chair buying-scheme-chair_${typesList.find((item) => item.id === Number(data.type_id))?.key || 'blocked'}`" @click="selectPlace(data)"></span>
                 </div>
             </div>
             <div class="buying-scheme-legend">
@@ -44,9 +44,9 @@ export default {
     },
     created() {
         Promise.all([
-            axios.get(`/client/halls/${this.session.hall}`),
-            axios.get(`/client/films/${this.session.film}`),
-            axios.get('/client/places', {params: {hall: this.session.hall}}),
+            axios.get(`/client/halls/${this.session.hall_id}`),
+            axios.get(`/client/films/${this.session.film_id}`),
+            axios.get('/client/places', {params: {hall: this.session.hall_id}}),
             axios.get('/client/orders', {params: {session: this.session.id}}),
             axios.get('/client/types'),
         ]).then(([hall, film, places, orders, types]) => {
@@ -56,8 +56,8 @@ export default {
             this.orders = orders?.data || null;
             if (this.orders && this.places && this.places.length) {
                 this.orders.forEach((order) => {
-                    const place = this.places.find((item) => item.id === order.place);
-                    place.type = 4;
+                    const place = this.places.find((item) => item.id === order.place_id);
+                    place.type_id = 4;
                 })
             }
             this.typesList = types?.data || [];
@@ -95,17 +95,17 @@ export default {
         },
 
         selectPlace(data) {
-            switch (Number(data.type)) {
+            switch (Number(data.type_id)) {
                 case 3:
                 case 4:
                     break;
                 case 5:
-                    data.type = this.selectedPlaces.find((item) => Number(item.id) === Number(data.id)).type;
+                    data.type_id = this.selectedPlaces.find((item) => Number(item.id) === Number(data.id)).type_id;
                     this.selectedPlaces = this.selectedPlaces.filter((item) => Number(item.id) !== Number(data.id));
                     break;
                 default:
                     this.selectedPlaces.push({...data});
-                    data.type = 5;
+                    data.type_id = 5;
             }
         },
 

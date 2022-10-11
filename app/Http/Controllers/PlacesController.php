@@ -12,16 +12,16 @@ class PlacesController extends Controller
     {
         $data = $request->all();
         $hall = $data['hall'];
-        return DB::table('places')->where('hall', $hall)->get();
+        return DB::table('places')->where('hall_id', $hall)->get();
     }
 
     public function store(Request $request)
     {
         $data = $request->all();
         $places = $data['places'];
-        $hall = $places[0]['hall'];
+        $hall = $places[0]['hall_id'];
 
-        DB::table('places')->where('hall', $hall)->delete();
+        DB::table('places')->where('hall_id', $hall)->delete();
 
         foreach ($places as $iValue) {
             $place = new Place;

@@ -12,7 +12,7 @@ class FilmSession extends Model
     protected $fillable = [
         'start',
         'end',
-        'film',
-        'hall',
+        'film_id',
+        'hall_id',
     ];
 }

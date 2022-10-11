@@ -10,9 +10,9 @@ class Place extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hall',
+        'hall_id',
         'row',
         'num',
-        'type',
+        'type_id',
     ];
 }

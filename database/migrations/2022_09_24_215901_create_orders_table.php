@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('place');
-            $table->foreign('place')->references('id')->on('places');
-            $table->integer('session');
-            $table->foreign('session')->references('id')->on('film_sessions');
+            $table->integer('place_id');
+            $table->foreign('place_id')->references('id')->on('places');
+            $table->integer('session_id');
+            $table->foreign('session_id')->references('id')->on('film_sessions');
             $table->timestamps();
         });
     }
