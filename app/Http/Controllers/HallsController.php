@@ -3,33 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hall;
-use App\Repositories\HallRepository;
-use App\Repositories\PlaceRepository;
-use App\Repositories\FilmSessionRepository;
-use App\Repositories\OrderRepository;
+use App\Services\HallService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class HallsController extends Controller
 {
-    public function index()
+    private HallService $hallService;
+
+    public function __construct(HallService $hallService)
+    {
+        $this->hallService = $hallService;
+    }
+
+    public function index(): \Illuminate\Database\Eloquent\Collection
     {
         return Hall::all();
     }
 
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         $hall = new Hall;
         $form = $request->all();
         $hall->fill($form)->save();
-        return 'success';
+        return response(null, 201);
     }
 
-    public function show($id)
+    public function show(int $id): Object
     {
-        return HallRepository::getById($id);
+        return $this->hallService->getHall($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): void
     {
         $hall = Hall::findOrFail($id);
         $data = $request->all();
@@ -39,15 +44,9 @@ class HallsController extends Controller
         $hall->save();
     }
 
-    public function destroy($id)
+    public function destroy(int $id): Response
     {
-        $sessions = FilmSessionRepository::search('hall_id', $id);
-        foreach ($sessions as $value) {
-            OrderRepository::delete('session_id', $value->id);
-        }
-        PlaceRepository::delete('hall_id', $id);
-        FilmSessionRepository::delete('hall_id', $id);
-        HallRepository::delete('id', $id);
-        return 'success';
+        $this->hallService->deleteHall($id);
+        return response(null, 201);
     }
 }

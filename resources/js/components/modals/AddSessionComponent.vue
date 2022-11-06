@@ -56,7 +56,7 @@ export default {
             const tstmpEnd = tstmpStart + Number(this.film.duration)*60;
 
             axios.post('/admin/sessions', {...this.formData, film_id: this.film.id, start: tstmpStart, end: tstmpEnd}).then((response) => {
-                if (response?.data === 'success') {
+                if (response?.status === 201) {
                     this.$emit('updateSessions');
                     this.close();
                 }

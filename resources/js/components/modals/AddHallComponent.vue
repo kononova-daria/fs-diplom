@@ -39,7 +39,7 @@ export default {
     methods: {
         save() {
             axios.post('/admin/halls', {...this.formData}).then((response) => {
-                if (response.data === 'success') {
+                if (response.status === 201) {
                     window.location = '/admin';
                 }
             });

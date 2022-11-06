@@ -2,35 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FilmSessionService;
 use Illuminate\Http\Request;
 use App\Models\FilmSession;
-use App\Repositories\FilmRepository;
-use App\Repositories\FilmSessionRepository;
-use App\Repositories\OrderRepository;
+use Illuminate\Http\Response;
 
 class FilmSessionsController extends Controller
 {
-    public function index()
+    private FilmSessionService $filmSessionService;
+
+    public function __construct(FilmSessionService $filmSessionService)
     {
-        $sessions = FilmSession::all();
-        foreach ($sessions as $value) {
-            $value->film = FilmRepository::search('id', $value->film_id)->first();
-        }
-        return $sessions;
+        $this->filmSessionService = $filmSessionService;
     }
 
-    public function store(Request $request)
+    public function index(): \Illuminate\Database\Eloquent\Collection
+    {
+        return $this->filmSessionService->getSessions();
+    }
+
+    public function store(Request $request): Response
     {
         $session = new FilmSession;
         $form = $request->all();
         $session->fill($form)->save();
-        return 'success';
+        return response(null, 201);
     }
 
-    public function destroy($id)
+    public function destroy(int $id): Response
     {
-        OrderRepository::delete('session_id', $id);
-        FilmSessionRepository::delete('id', $id);
-        return 'success';
+        $this->filmSessionService->deleteSession($id);
+        return response(null, 201);
     }
 }

@@ -36,7 +36,7 @@ export default {
         deleteItem() {
             if (this.session.id) {
                 axios.delete(`/admin/sessions/${this.session.id}`).then((response) => {
-                    if (response.data === 'success') {
+                    if (response.status === 201) {
                         this.$emit('updateSessions');
                         this.close();
                     };

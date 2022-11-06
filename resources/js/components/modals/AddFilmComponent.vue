@@ -54,7 +54,7 @@ export default {
     methods: {
         save() {
             axios.post('/admin/films', {...this.formData}).then((response) => {
-                if (response.data === 'success') {
+                if (response.status === 201) {
                     this.$emit('updateFilms');
                     this.close();
                 }

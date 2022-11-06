@@ -36,7 +36,7 @@ export default {
         deleteItem() {
             if (this.film.id) {
                 axios.delete(`/admin/films/${this.film.id}`).then((response) => {
-                    if (response.data === 'success') {
+                    if (response.status === 201) {
                         this.$emit('updateFilms');
                         this.close();
                     };
